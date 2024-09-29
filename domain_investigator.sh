@@ -35,7 +35,15 @@ tmp=()
 domains=()
 
 
-which dos2unix 1>/dev/null || err "please install dos2unix tool before use this script, for debian based system use \"sudo apt install dos2unix\"" 3 0 38
+
+check_dependencies(){
+    which dos2unix 1>/dev/null  ||  err "please install dos2unix, sqlite3, whois, gawk, curl tools before use this script, for debian based system use \"sudo apt install dos2unix sqlite3 whois gawk curl\"" 3 0 99
+    which sqlite3 1>/dev/null  ||    err "please install dos2unix, sqlite3, whois, gawk, curl tools before use this script, for debian based system use \"sudo apt install dos2unix sqlite3 whois gawk curl\"" 3 0 99
+    which whois 1>/dev/null  ||    err "please install dos2unix, sqlite3, whois, gawk, curl tools before use this script, for debian based system use \"sudo apt install dos2unix sqlite3 whois gawk curl\"" 3 0 99
+    which gawk 1>/dev/null  ||    err "please install dos2unix, sqlite3, whois, gawk, curl tools before use this script, for debian based system use \"sudo apt install dos2unix sqlite3 whois gawk curl\"" 3 0 99
+    which curl 1>/dev/null  ||    err "please install dos2unix, sqlite3, whois, gawk, curl tools before use this script, for debian based system use \"sudo apt install dos2unix sqlite3 whois gawk curl\"" 3 0 99
+}
+
 show_help(){
     echo "Usage: $0 "
 }
@@ -44,7 +52,7 @@ show_help(){
 if [ $# -lt 1 ]; then
     show_help; exit 1
 fi
-
+check_dependencies
 while [ $# -gt 0 ]; do
     case $1 in 
     -h|--help)
@@ -61,7 +69,7 @@ while [ $# -gt 0 ]; do
             shift 2
             tmp0=`mktemp`
             dos2unix "$input_file" 1>/dev/null 2>/dev/null || err "dos2unix Error!" 3 0 28
-            awk '$0 ~ /([a-z0-9\-]+\.)+[a-z]+/ {print $0}' "$input_file" > $tmp0
+            gawk '$0 ~ /([a-z0-9\-]+\.)+[a-z]+/ {print $0}' "$input_file" > $tmp0
             convert_to_arrayln_O "$(cat "$tmp0")" || err "cannot convert file $$tmp0 into list." 3 0 20
             tmp=("${tmp[@]}" "${list[@]}")
         else
