@@ -37,7 +37,7 @@ getcrt(){
     elif [ $# -gt 1 ]; then
         err "Many arguments to getcrt() function!" 3 1 25; return $?
     fi
-    echo  "$1"  | awk -F ': ' '$0 ~ /Creation Date/  {print  $2}' | cut -d'T' -f1 | head -n 1
+    echo  "$1"  | gawk -F ': ' '$0 ~ /Creation Date/  {print  $2}' | cut -d'T' -f1 | head -n 1
 }
 
 getexp(){
@@ -46,7 +46,7 @@ getexp(){
     elif [ $# -gt 1 ]; then
         err "Many arguments to getexp() function!" 3 1 27; return $?
     fi
-    echo "$1"  | awk -F ': ' '$0 ~ /Registry Expiry Date/  {print  $2}' | cut -d'T' -f1 | head -n 1
+    echo "$1"  | gawk -F ': ' '$0 ~ /Registry Expiry Date/  {print  $2}' | cut -d'T' -f1 | head -n 1
 }
 
 getorg(){
@@ -55,7 +55,7 @@ getorg(){
     elif [ $# -gt 1 ]; then
         err "Many arguments to getorg() function!" 3 1 29; return $?
     fi
-    echo  "$1"  | awk -F ': ' '$0 ~ /Registrant Organization/  {print  $2}' |  head -n 1
+    echo  "$1"  | gawk -F ': ' '$0 ~ /Registrant Organization/  {print  $2}' |  head -n 1
 }
 
 getreg(){
