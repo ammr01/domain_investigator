@@ -65,3 +65,9 @@ The script generates a CSV file with the following columns:
 **License:**
 
 This script is released under the MIT License.
+
+## Author
+**Amro Alasmar**
+
+## Idea By
+**Mohammad Khaled**
