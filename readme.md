@@ -7,7 +7,7 @@ This script automates the process of gathering information about domain names, i
 
 **Installation:**
 
-1. **Prerequisites:** Ensure you have `curl`, `dos2unix`, `sqlite3`, `per` and `whois` installed:
+1. **Prerequisites:** Ensure you have `curl`, `dos2unix`, `sqlite3`, `perl` and `whois` installed:
    ```bash
    sudo apt install curl dos2unix whois sqlite3 perl
    ```
